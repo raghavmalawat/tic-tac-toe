@@ -1,0 +1,11 @@
+{
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "description": "A CLI tic tac toe game",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}

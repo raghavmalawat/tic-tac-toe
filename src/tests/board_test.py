@@ -41,5 +41,21 @@ class BoardTest(unittest.TestCase):
 
         self.assertEqual(expected_diagonals, board.diagonals)
 
+    def test_update_board(self):
+        board = Board()
+            
+        board.rows = [['a', 'b', 'c'],
+                      ['d', 'e', 'f'],
+                      ['g', 'h', 'i']]
+
+        board.update_board("X", (1, 2))
+
+        expected_rows = [['a', 'b', 'c'],
+                         ['d', 'e', 'X'],
+                         ['g', 'h', 'i']]
+
+        self.assertEqual(expected_rows, board.rows)
+
+
 if __name__ == '__main__':
     unittest.main()

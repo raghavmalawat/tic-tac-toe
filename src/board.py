@@ -17,3 +17,6 @@ class Board(object):
         return "  a b c\n0 {}\n1 {}\n2 {}".format(' '.join(self.rows[0]),
                                                   ' '.join(self.rows[1]),
                                                   ' '.join(self.rows[2]))
+
+    def update_board(self, player, coordinates):
+        self.rows[coordinates[0]][coordinates[1]] = player

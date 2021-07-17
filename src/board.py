@@ -19,6 +19,7 @@ class Board(object):
                                                   ' '.join(self.rows[1]),
                                                   ' '.join(self.rows[2]))
 
+    # prints the gma eboard in a table format
     def printBoard(self):
         tab = tt.Texttable()
         tab.header(['', 0, 1, 2])
@@ -35,7 +36,8 @@ class Board(object):
     def updateBoard(self, player, coordinates):
         self.rows[coordinates[0]][coordinates[1]] = player
 
-    
+    # Check if all the symbols for any row or column or diagonal matches
+    # If yes, return true else return false
     def checkWin(self, symbols):
         lines = self.rows + self.columns + self.diagonals
 
@@ -44,6 +46,8 @@ class Board(object):
                 return 1
         return 0
 
+    # Convert user input for coordinate to a tuple and if 
+    # value already set or out of bounds return relevant error
     def getBoardCoordinates(self, inputCoordinates):
         try:
             coordinates = (int(inputCoordinates[0]), int(inputCoordinates[1]))

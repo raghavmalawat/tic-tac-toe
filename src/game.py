@@ -12,6 +12,8 @@ class Game(object):
     def initializeBoard(self):
         self.board = Board()
 
+    # take user names and symbols and prompt
+    # user 2 to choose a different symbol if chosen otherwise
     def getUserInputs(self):
         name1 = input("Enter the name of the first user : ")
         symbol1 = input("Enter the symbol of the first user : ")
@@ -34,6 +36,9 @@ class Game(object):
         self.user2 = User(name2, symbol2)
 
 
+    # Play the game of tic tack toe between two players
+    # Perform one operation at a time and check the board viability and 
+    # if any user winning 
     def play(self):
         players = itertools.cycle([self.user1, self.user2])
         print(self.board.printBoard())
@@ -54,7 +59,7 @@ class Game(object):
             self.board.updateBoard(player.getSymbol(), coordinates)
             print(self.board.printBoard())
 
-            if x > 3:
+            if x > 3:         # checking only when minimum of 5 operations are carried out 3 for A and 2 for B
                 if self.board.checkWin([self.user1.getSymbol(), self.user2.getSymbol()]) == 1:
                     print('\n{} won!'.format(player.getName()))
                     return

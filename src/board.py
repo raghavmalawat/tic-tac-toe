@@ -14,7 +14,7 @@ class Board(object):
         return [item for item in map(list, zip(*self.rows))]
 
     def __str__(self):
-        return "  a b c\n0 {}\n1 {}\n2 {}".format(' '.join(self.rows[0]),
+        return "  0 1 2\n0 {}\n1 {}\n2 {}".format(' '.join(self.rows[0]),
                                                   ' '.join(self.rows[1]),
                                                   ' '.join(self.rows[2]))
 
@@ -30,3 +30,16 @@ class Board(object):
                 return True
         return False
 
+    def getBoardCoordinates(self, inputCoordinates):
+        try:
+            coordinates = (int(inputCoordinates[0]), int(inputCoordinates[1]))
+        except (ValueError):
+            raise ValueError('Invalid coordinates')
+
+        if (coordinates[0] >= (len(self.rows)) or coordinates[1] >= (len(self.columns))):
+            raise ValueError('Out of bound coordinates')
+
+        if self.rows[coordinates[0]][coordinates[1]] != ' ':
+            raise ValueError('Duplicate coordinates')
+
+        return coordinates

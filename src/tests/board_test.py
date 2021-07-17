@@ -131,6 +131,32 @@ class BoardTest(unittest.TestCase):
                     
         self.assertTrue(board.check_win)
 
+    def test_get_coordinates(self):
+        board = Board()
+        
+        input_coordinates = '01'
+        expected_parsed_coordinates = (0, 1)
+
+        self.assertEqual(expected_parsed_coordinates, board.getBoardCoordinates(input_coordinates))
+
+        input_coordinates = '21'
+        expected_parsed_coordinates = (2, 1)
+        
+        self.assertEqual(expected_parsed_coordinates, board.getBoardCoordinates(input_coordinates))
+
+    def test_get_duplicate_coordinates(self):
+        board = Board()
+        board.rows = [['X', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+
+        self.assertRaises(ValueError, board.getBoardCoordinates, '00')
+
+    def test_get_outofbound_coordinates(self):
+        board = Board()
+
+        self.assertRaises(ValueError, board.getBoardCoordinates, '04')
+        self.assertRaises(ValueError, board.getBoardCoordinates, '32')
+
+
 
 if __name__ == '__main__':
     unittest.main()

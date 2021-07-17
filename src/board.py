@@ -18,15 +18,15 @@ class Board(object):
                                                   ' '.join(self.rows[1]),
                                                   ' '.join(self.rows[2]))
 
-    def update_board(self, player, coordinates):
+    def updateBoard(self, player, coordinates):
         self.rows[coordinates[0]][coordinates[1]] = player
 
     
-    def checkWin(self):
+    def checkWin(self, symbols):
         lines = self.rows + self.columns + self.diagonals
 
         for line in lines:
-            if (all(board_position == 'X' for board_position in line) or all(board_position == 'O' for board_position in line)):
+            if (all(board_position == symbols[0] for board_position in line) or all(board_position == symbols[1] for board_position in line)):
                 return 1
         return 0
 

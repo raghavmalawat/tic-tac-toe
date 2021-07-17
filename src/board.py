@@ -20,3 +20,13 @@ class Board(object):
 
     def update_board(self, player, coordinates):
         self.rows[coordinates[0]][coordinates[1]] = player
+
+    
+    def check_win(self):
+        lines = self.rows + self.columns + self.diagonals
+
+        for line in lines:
+            if (all(board_position == 'X' for board_position in line) or all(board_position == 'O' for board_position in line)):
+                return True
+        return False
+

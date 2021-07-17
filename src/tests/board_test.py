@@ -56,6 +56,81 @@ class BoardTest(unittest.TestCase):
 
         self.assertEqual(expected_rows, board.rows)
 
+    def test_check_win_row(self):
+        board = Board()
+
+        board.rows = [['X', 'X', 'X'],
+                      ['d', 'e', 'f'],
+                      ['g', 'h', 'i']]
+                    
+        self.assertTrue(board.check_win)
+
+        board.rows = [['a', 'b', 'c'],
+                      ['X', 'X', 'X'],
+                      ['g', 'h', 'i']]
+                    
+        self.assertTrue(board.check_win)
+
+        board.rows = [['a', 'b', 'c'],
+                      ['d', 'e', 'f'],
+                      ['X', 'X', 'X']]
+                    
+        self.assertTrue(board.check_win)
+        
+
+
+    def test_check_win_col(self):
+        board = Board()
+
+        board.rows = [['X', 'b', 'c'],
+                      ['X', 'e', 'f'],
+                      ['X', 'h', 'i']]
+                    
+        self.assertTrue(board.check_win)
+
+        board.rows = [['a', 'X', 'c'],
+                      ['d', 'X', 'f'],
+                      ['g', 'X', 'i']]
+                    
+        self.assertTrue(board.check_win)
+
+        board.rows = [['a', 'b', 'X'],
+                      ['d', 'e', 'X'],
+                      ['g', 'h', 'X']]
+                    
+        self.assertTrue(board.check_win)
+
+    def test_check_win_diagonal(self):
+        board = Board()
+
+        board.rows = [['X', 'b', 'c'],
+                      ['d', 'X', 'f'],
+                      ['g', 'h', 'X']]
+                    
+        self.assertTrue(board.check_win)
+
+        board.rows = [['a', 'b', 'X'],
+                      ['d', 'X', 'f'],
+                      ['X', 'h', 'i']]
+                    
+        self.assertTrue(board.check_win)
+
+
+    def test_check_no_win(self):
+        board = Board()
+
+        board.rows = [['X', 'b', 'X'],
+                      ['d', 'X', 'f'],
+                      ['g', 'h', 'i']]
+                    
+        self.assertTrue(board.check_win)
+
+        board.rows = [['X', 'b', 'c'],
+                      ['d', 'X', 'f'],
+                      ['X', 'X', 'i']]
+                    
+        self.assertTrue(board.check_win)
+
 
 if __name__ == '__main__':
     unittest.main()

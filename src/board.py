@@ -1,0 +1,45 @@
+
+class Board(object):
+
+    def __init__(self):
+        self.rows = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+
+    @property
+    def diagonals(self):
+        return [[self.rows[0][0], self.rows[1][1], self.rows[2][2]],
+                [self.rows[0][2], self.rows[1][1], self.rows[2][0]]]
+
+    @property
+    def columns(self):
+        return [item for item in map(list, zip(*self.rows))]
+
+    def __str__(self):
+        return "  0 1 2\n0 {}\n1 {}\n2 {}".format(' '.join(self.rows[0]),
+                                                  ' '.join(self.rows[1]),
+                                                  ' '.join(self.rows[2]))
+
+    def update_board(self, player, coordinates):
+        self.rows[coordinates[0]][coordinates[1]] = player
+
+    
+    def check_win(self):
+        lines = self.rows + self.columns + self.diagonals
+
+        for line in lines:
+            if (all(board_position == 'X' for board_position in line) or all(board_position == 'O' for board_position in line)):
+                return True
+        return False
+
+    def getBoardCoordinates(self, inputCoordinates):
+        try:
+            coordinates = (int(inputCoordinates[0]), int(inputCoordinates[1]))
+        except (ValueError):
+            raise ValueError('Invalid coordinates')
+
+        if (coordinates[0] >= (len(self.rows)) or coordinates[1] >= (len(self.columns))):
+            raise ValueError('Out of bound coordinates')
+
+        if self.rows[coordinates[0]][coordinates[1]] != ' ':
+            raise ValueError('Duplicate coordinates')
+
+        return coordinates

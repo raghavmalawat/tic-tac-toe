@@ -11,23 +11,28 @@ class Game(object):
 
     def initializeBoard(self):
         self.board = Board()
+        print ('-------------------------------------\n')
+        print ('             TIC-TAC-TOE             \n')
+        print ('-------------------------------------\n')
+
+        print(self.board.printBoard())
 
     # take user names and symbols and prompt
     # user 2 to choose a different symbol if chosen otherwise
     def getUserInputs(self):
-        name1 = input("Enter the name of the first user : ")
-        symbol1 = input("Enter the symbol of the first user : ")
+        name1 = input("Enter the name of the first user 😀 : ")
+        symbol1 = input("Enter the symbol of the first user 🔠 : ")
 
-        name2 = input("\nEnter the name of the second user : ")
+        name2 = input("\nEnter the name of the second user 😀 : ")
 
         while True:
             try:
-                symbol2 = input("Enter the symbol of the second user : ")
+                symbol2 = input("Enter the symbol of the second user 🔠 : ")
                 if symbol1 == symbol2:
-                    raise ValueError('Same symbol used, please use a different symbol!')
+                    raise ValueError('Same symbol used, please use a different symbol! 🛑')
 
             except (ValueError, IndexError, KeyError):
-                print('Same symbol used, please use a different symbol!')
+                print('Same symbol used, please use a different symbol! 🛑')
                 continue
             break
 
@@ -41,7 +46,6 @@ class Game(object):
     # if any user winning 
     def play(self):
         players = itertools.cycle([self.user1, self.user2])
-        print(self.board.printBoard())
 
         for x in range(9):
             player = next(players)
@@ -52,7 +56,7 @@ class Game(object):
                     input_coordinates = input()
                     coordinates = self.board.getBoardCoordinates(input_coordinates)
                 except (ValueError, IndexError, KeyError):
-                    print('\nThe coordinates you entered are not valid. Re-enter.')
+                    print('\nThe coordinates you entered are not valid. Re-enter. 🛑')
                     continue
                 break
 
@@ -61,10 +65,10 @@ class Game(object):
 
             if x > 3:         # checking only when minimum of 5 operations are carried out 3 for A and 2 for B
                 if self.board.checkWin([self.user1.getSymbol(), self.user2.getSymbol()]) == 1:
-                    print('\n{} won!'.format(player.getName()))
+                    print('\n{} won! 🎉🔥'.format(player.getName()))
                     return
 
-        print('\nThe game ended in a draw')
+        print('\nThe game ended in a draw ☮️')
 
 
 if __name__ == '__main__':

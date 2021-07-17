@@ -24,10 +24,13 @@ class Board(object):
         tab = tt.Texttable()
         tab.header(['', 0, 1, 2])
 
-        printableRows = copy.copy(self.rows)
-        printableRows.insert(0, [0, 1, 2])
+        printableRows = copy.deepcopy(self.rows)
 
-        for row in [item for item in map(list, zip(*printableRows))]:
+        for i in range(len(self.rows)):
+            printableRows[i].insert(0, i)
+
+        for row in printableRows:
+            print(row)
             tab.add_row(row)
 
         return tab.draw()

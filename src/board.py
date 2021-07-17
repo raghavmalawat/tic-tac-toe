@@ -22,13 +22,13 @@ class Board(object):
         self.rows[coordinates[0]][coordinates[1]] = player
 
     
-    def check_win(self):
+    def checkWin(self):
         lines = self.rows + self.columns + self.diagonals
 
         for line in lines:
             if (all(board_position == 'X' for board_position in line) or all(board_position == 'O' for board_position in line)):
-                return True
-        return False
+                return 1
+        return 0
 
     def getBoardCoordinates(self, inputCoordinates):
         try:

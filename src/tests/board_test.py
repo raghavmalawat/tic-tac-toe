@@ -63,20 +63,19 @@ class BoardTest(unittest.TestCase):
                       ['d', 'e', 'f'],
                       ['g', 'h', 'i']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(1, board.checkWin())
 
         board.rows = [['a', 'b', 'c'],
                       ['X', 'X', 'X'],
                       ['g', 'h', 'i']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(1, board.checkWin())
 
         board.rows = [['a', 'b', 'c'],
                       ['d', 'e', 'f'],
                       ['X', 'X', 'X']]
                     
-        self.assertTrue(board.check_win)
-        
+        self.assertEqual(1, board.checkWin())
 
 
     def test_check_win_col(self):
@@ -86,19 +85,19 @@ class BoardTest(unittest.TestCase):
                       ['X', 'e', 'f'],
                       ['X', 'h', 'i']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(1, board.checkWin())
 
         board.rows = [['a', 'X', 'c'],
                       ['d', 'X', 'f'],
                       ['g', 'X', 'i']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(1, board.checkWin())
 
         board.rows = [['a', 'b', 'X'],
                       ['d', 'e', 'X'],
                       ['g', 'h', 'X']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(1, board.checkWin())
 
     def test_check_win_diagonal(self):
         board = Board()
@@ -107,13 +106,13 @@ class BoardTest(unittest.TestCase):
                       ['d', 'X', 'f'],
                       ['g', 'h', 'X']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(1, board.checkWin())
 
         board.rows = [['a', 'b', 'X'],
                       ['d', 'X', 'f'],
                       ['X', 'h', 'i']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(1, board.checkWin())
 
 
     def test_check_no_win(self):
@@ -123,13 +122,13 @@ class BoardTest(unittest.TestCase):
                       ['d', 'X', 'f'],
                       ['g', 'h', 'i']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(0, board.checkWin())
 
         board.rows = [['X', 'b', 'c'],
                       ['d', 'X', 'f'],
                       ['X', 'X', 'i']]
                     
-        self.assertTrue(board.check_win)
+        self.assertEqual(0, board.checkWin())
 
     def test_get_coordinates(self):
         board = Board()

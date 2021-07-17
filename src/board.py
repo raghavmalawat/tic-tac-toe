@@ -1,4 +1,5 @@
-
+import texttable as tt
+import copy
 class Board(object):
 
     def __init__(self):
@@ -17,6 +18,19 @@ class Board(object):
         return "  0 1 2\n0 {}\n1 {}\n2 {}".format(' '.join(self.rows[0]),
                                                   ' '.join(self.rows[1]),
                                                   ' '.join(self.rows[2]))
+
+    def printBoard(self):
+        tab = tt.Texttable()
+        tab.header(['', 0, 1, 2])
+
+        printableRows = copy.copy(self.rows)
+        printableRows.insert(0, [0, 1, 2])
+
+        for row in [item for item in map(list, zip(*printableRows))]:
+            tab.add_row(row)
+
+        return tab.draw()
+
 
     def updateBoard(self, player, coordinates):
         self.rows[coordinates[0]][coordinates[1]] = player

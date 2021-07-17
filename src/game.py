@@ -73,6 +73,10 @@ class Game(object):
 
 if __name__ == '__main__':
     game = Game()
-    game.initializeBoard()
-    game.getUserInputs()
-    game.play()
+    play = 1
+    while play == 1:
+        game.initializeBoard()
+        game.getUserInputs()
+        game.play()
+
+        play = int(input("\nDo you want to play again? \nIf YES press 1, If NO press 0\n"))

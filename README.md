@@ -44,3 +44,4 @@ Following are few assumptions made while development:
 - This is a dual player game 
 - If the game comes to position where no player is winning and has no chances in that particular game, still the game has to be completed by filling all the boxes in order to "draw" the game.
 - the player might enter a coordinate outside the grid, in that case a retry option is provided.
+- Player might want to play another game, hence confirm once a game ends

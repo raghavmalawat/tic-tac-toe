@@ -30,7 +30,6 @@ class Board(object):
             printableRows[i].insert(0, i)
 
         for row in printableRows:
-            print(row)
             tab.add_row(row)
 
         return tab.draw()

@@ -1,5 +1,6 @@
 import texttable as tt
 import copy
+import random
 class Board(object):
 
     def __init__(self):
@@ -63,3 +64,11 @@ class Board(object):
             raise ValueError('Duplicate coordinates')
 
         return coordinates
+
+    def getComputerMove(self):
+        places_left = []
+        for i in range(len(self.rows)):
+            for j in range(len(self.rows[i])):
+                if (self.rows[i][j] == ' '):
+                    places_left.append((i, j))
+        return(random.choice(places_left))

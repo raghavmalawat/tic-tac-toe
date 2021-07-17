@@ -1,7 +1,7 @@
 import itertools
 from board import Board
 from user import User
-
+import time
 class Game(object):
 
     def __init__(self):
@@ -40,6 +40,17 @@ class Game(object):
         self.user1 = User(name1, symbol1)
         self.user2 = User(name2, symbol2)
 
+    # take user name and symbol
+    def getSingleUser(self):
+        name1 = input("Enter the name of the user 😀 : ")
+        symbol1 = input("Enter the symbol of the user 🔠 : ")
+
+        symbol2 = 'X'
+        if symbol1 == 'X':
+            symbol2 = 'O'
+
+        self.user1 = User(name1, symbol1)
+        self.user2 = User('Computer', symbol2)
 
     # Play the game of tic tack toe between two players
     # Perform one operation at a time and check the board viability and 
@@ -49,16 +60,22 @@ class Game(object):
 
         for x in range(9):
             player = next(players)
-            print ('\n{} please enter the coordinates for your move'.format(player.getName()))
 
-            while True:
-                try:
-                    input_coordinates = input()
-                    coordinates = self.board.getBoardCoordinates(input_coordinates)
-                except (ValueError, IndexError, KeyError):
-                    print('\nThe coordinates you entered are not valid. Re-enter. 🛑')
-                    continue
-                break
+            if player.name == 'Computer':
+                print ('\nComputer thinking its next move\n')
+                time.sleep(2)
+                coordinates = self.board.getComputerMove()
+            else:
+                print ('\n{} please enter the coordinates for your move'.format(player.getName()))
+
+                while True:
+                    try:
+                        input_coordinates = input()
+                        coordinates = self.board.getBoardCoordinates(input_coordinates)
+                    except (ValueError, IndexError, KeyError):
+                        print('\nThe coordinates you entered are not valid. Re-enter. 🛑')
+                        continue
+                    break
 
             self.board.updateBoard(player.getSymbol(), coordinates)
             print(self.board.printBoard())
@@ -76,7 +93,11 @@ if __name__ == '__main__':
     play = 1
     while play == 1:
         game.initializeBoard()
-        game.getUserInputs()
+        singlePlayer = int(input("\nPress 1 for Single Player\nPress 2 for dual player mode\n"))
+        if singlePlayer == 2:
+            game.getUserInputs()
+        else:
+            game.getSingleUser()
         game.play()
 
         play = int(input("\nDo you want to play again? \nIf YES press 1, If NO press 0\n"))
